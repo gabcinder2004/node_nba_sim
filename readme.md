@@ -1,5 +1,11 @@
-# Outside
+# List of things to do
+1) Initialize Season
+    a) Populate team rosters
+    b) Organize teams into divisons & conferences
+    c) Initialize team standings
+2) Simulate one day of games
+    a) Get schedule of 1st day of games
+    b) Simulate one game at a time
+        # Simulate one possession of each game at a time
+    c) Update standings accordingly
 
-A CLI app that gives you the weather forecast.
-
-_This is the source code for our tutorial on [building Node CLIs](https://timber.io/blog/creating-a-real-world-cli-app-with-node)._
