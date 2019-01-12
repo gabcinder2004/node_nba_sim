@@ -19,7 +19,8 @@ const getSchedule = async () => {
         id: game.gameId,
         vTeam: game.vTeam.teamId,
         hTeam: game.hTeam.teamId,
-        date: game.startDateEastern
+        date: game.startDateEastern,
+        result: null
       })
     })
   );

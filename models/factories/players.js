@@ -1,20 +1,16 @@
 const ora = require('ora');
-const player_info = require('../collectors/player');
-const file_manager = require('../utils/file_manager');
+const player_info = require('../../collectors/player');
+const Player = require('../player');
+const file_manager = require('../../utils/file_manager');
 
 const fetchFreshData = async () => {
   const players = await player_info.getAllPlayers();
   const playerRatings = await file_manager.csvToJson('player_ratings.csv');
-  var detailedPlayers = [];
-  var simplePlayers = [];
+  var allPlayers = [];
 
   await Promise.all(
     players.map(async player => {
-      delete player['teams'];
-      delete player['draft'];
-
       var stats = await player_info.getDetailedPlayerInfo(player.personId);
-      player.stats = stats;
 
       let rating = playerRatings.find(
         o =>
@@ -23,19 +19,12 @@ const fetchFreshData = async () => {
       );
 
       player.rating = rating;
-      detailedPlayers.push(player);
-      simplePlayers.push({
-        id: player.personId,
-        firstName: player.firstName,
-        lastName: player.lastName,
-        pos: player.pos,
-        teamId: player.teamId
-      });
+      allPlayers.push(new Player(player.personId, player.firstName, player.lastName, player.pos, player.teamId, stats, rating));
     })
   );
 
-  file_manager.writeToFile('players.json', JSON.stringify(detailedPlayers));
-  return { detailed: detailedPlayers, simple: simplePlayers };
+  file_manager.writeToFile('players.json', JSON.stringify(allPlayers));
+  return allPlayers;
 };
 
 const generate = async () => {

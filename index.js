@@ -1,6 +1,5 @@
 const minimist = require('minimist');
 const error = require('./utils/error');
-const seasonFactory = require('./cmds/season');
 
 module.exports = () => {
   const args = minimist(process.argv.slice(2));
@@ -19,9 +18,8 @@ module.exports = () => {
   }
 
   switch (cmd) {
-    case 'season new':
-      var season = seasonFactory.initialize();
-      
+    case 'start':
+      require('./cmds/menu')(args);
       break;
 
     case 'help':

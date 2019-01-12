@@ -16,6 +16,7 @@ const getEndpoints = async () => {
 };
 const m_getEndpoints = memoize(getEndpoints, { async: true });
 
+//TODO: This doesn't work yet.
 const memoized_getEndpoints = async () => {
   return m_getEndpoints();
 };

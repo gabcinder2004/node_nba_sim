@@ -34,4 +34,16 @@ const csvToJson = async fileName => {
   }
 };
 
-module.exports = { writeToFile, fileExists, readJsonFile, csvToJson };
+const getSavedFiles = async () => {
+  try {
+    return await fs.readdirSync(`${BASE_DIRECTORY}/saves`).filter(file => file.includes('season-'));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+const readSaveFile = async (fileName) => {
+  return await readJsonFile(`saves/${fileName}`);
+}
+
+module.exports = { writeToFile, fileExists, readJsonFile, csvToJson, getSavedFiles, readSaveFile };

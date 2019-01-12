@@ -26,6 +26,7 @@
     "axios": "^0.18.0",
     "csvtojson": "^2.0.8",
     "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.1",
     "memoizee": "^0.4.14",
     "minimist": "^1.2.0",
     "ora": "^2.0.0"
